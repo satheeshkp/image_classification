@@ -6,13 +6,13 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 
 
-img_width, img_height = 224, 224
+img_width, img_height = 32, 32
 
-train_data_dir = 'v_data/train'
-validation_data_dir = 'v_data/test'
+train_data_dir = 'train'
+validation_data_dir = 'test'
 nb_train_samples = 400
 nb_validation_samples = 100
-epochs = 25
+epochs = 50
 batch_size = 25
 
 if K.image_data_format() == 'channels_first':
@@ -31,6 +31,7 @@ model.add(MaxPooling2D(pool_size =(2, 2)))
 
 model.add(Conv2D(64, (2, 2)))
 model.add(Activation('relu'))
+model.add(Dropout(0.5))
 model.add(MaxPooling2D(pool_size =(2, 2)))
 
 model.add(Flatten())
